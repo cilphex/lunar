@@ -277,14 +277,18 @@
         var time_window = 1 * milliseconds_per_day; // The ship will sit until 1 day beforehand
         // var time_window = 10 * milliseconds_per_minute;
 
-        var d1 = new Date();
-        d1.setFullYear(2016);   // 2016
-        d1.setMonth(6);        // May
-        d1.setDate(21);         // 8
-        d1.setHours(9);        // 6
-        d1.setMinutes(0);       // 0
-        d1.setSeconds(0);       // 0
-        d1.setMilliseconds(0);  // 0
+        // var d1 = new Date();
+        // d1.setFullYear(2016);   // 2016
+        // d1.setMonth(6);        // May
+        // d1.setDate(21);         // 8
+        // d1.setHours(9);        // 6
+        // d1.setMinutes(0);       // 0
+        // d1.setSeconds(0);       // 0
+        // d1.setMilliseconds(0);  // 0
+
+        // 5/2/20: set to 30 seconds in the future
+        var now = new Date()
+        var d1 = new Date(now.getTime() + 0.5 * 60000);
 
         // d1.setFullYear(2016);   // 2016
         // d1.setMonth(3);        // May
@@ -342,7 +346,6 @@
         }
 
         var updateWarpfield = function() {
-          // Update warpfield velocitys
           var d2 = new Date();
           var diff = d1 - d2;
           var percent_remaining = diff / time_window * 100;
@@ -352,7 +355,7 @@
           velocity = Math.max(velocity, 0.01); // 0.01 min
           velocity = Math.min(velocity, 0.25); // 0.25 min
           Z = velocity;
-          // console.log('percent_complete', percent_complete, 'Z', Z);
+          console.log('warpfield: percent_complete', percent_complete, 'Z', Z);
         }
 
         var land = function() {
@@ -457,6 +460,9 @@
         moveRocket();
         updateWarpfield();
 
+        // 4/24/2020
+        // Firebase stuff out of date, so just comment out / return before it
+        return;
 
         // Viewer count stuff
         var listRef = new Firebase("https://tothemoonbase.firebaseio.com/presence/");
@@ -535,6 +541,6 @@
     </audio>
     <iframe id="audio_iframe" data-src="http://www.infinitelooper.com/?v=ShSELif0x98&p=n#/18;212"></iframe>
   </body>
-  <!-- <script src="warpfield.js"></script> -->
+  <script src="warpfield.js"></script>
 </html>
 <!-- project moonbase -->
