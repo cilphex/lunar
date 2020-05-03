@@ -94,9 +94,9 @@ $(function() {
     clearTimeout(moveRocket);
     $('.rocket').addClass('landed');
     $('.line').fadeOut();
-    // setTimeout(function() {
-    //   $('.reload').addClass('landed');
-    // }, 3000);
+    setTimeout(function() {
+      $('.reload').addClass('landed');
+    }, 3000);
     setTimeout(function() {
       $('.rocket').fadeOut();
     }, 4000);
