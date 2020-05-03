@@ -87,7 +87,6 @@ $(function() {
     velocity = Math.max(velocity, 0.01); // 0.01 min
     velocity = Math.min(velocity, 0.25); // 0.25 min
     Z = velocity;
-    console.log('warpfield: percent_complete', percent_complete, 'Z', Z);
   }
 
   var land = function() {
