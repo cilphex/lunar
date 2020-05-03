@@ -104,8 +104,14 @@ var rf = function()
        cy = (mousey - height / 2) + (height / 2);
 
    // update all stars
-   var sat = Floor(Z * 500);       // Z range 0.01 -> 0.5
-   if (sat > 100) sat = 100;
+   // var sat = Floor(Z * 500);       // Z range 0.01 -> 0.5
+   // if (sat > 100) sat = 100;
+
+   // Rather than increase the saturation and have a fixed lightness at 80%,
+   // fix the saturation at 100%, and reduce lightness from 100% to 50% over time,
+   // to change from white to max color
+   var lightness = Math.ceil((1 - (Z / 0.5)) * 100);
+
    for (var i=0; i<units; i++)
    {
       var n = stars[i],            // the star
@@ -116,7 +122,8 @@ var rf = function()
       if (n.px !== 0)
       {
          // hsl colour from a sine wave
-         G.strokeStyle = "hsl(" + ((cycle * i) % 360) + "," + sat + "%,80%)";
+         // G.strokeStyle = "hsl(" + ((cycle * i) % 360) + "," + sat + "%,100%)";
+         G.strokeStyle = "hsl(" + ((cycle * i) % 360) + ",100%," + lightness + "%)";
          G.lineWidth = e;
          G.beginPath();
          G.moveTo(xx + cx, yy + cy);
